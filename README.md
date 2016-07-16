@@ -9,11 +9,12 @@ littered with lots of development packages. The set of scripts is mainly
 intended for GIMP enthusiasts, testers and other people who want to run the
 very last version of GIMP.
 
-The scripts work by using docker to contain all build dependencies.
-However, sources and built files for some dependencies (libmypaint, babl, gegl)
-and GIMP itself will be located on your local filesystem, not inside the
-container. This allows us to reuse already built files and thus, speed up build
-process when you are building them for the second (third etc) time.
+The scripts work by using docker to contain build dependencies.  However,
+sources and built files for dependencies that we build from source (libmypaint,
+babl, gegl) and GIMP itself will be located on your local filesystem, not
+inside the container. This allows us to reuse already built files and thus,
+speed up build process when you are building them for the second (third etc)
+time.
 
 # Dependencies
 
