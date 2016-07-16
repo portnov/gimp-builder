@@ -60,12 +60,21 @@ To build, you have to run
 
     $ ./build-gimp.sh
 
+This script builds docker image with debian stretch and all GIMP build
+dependencies. These dependencies include a lot of debian packages. If you want
+to save your bandwidth when running this several times, you may run
+apt-cacher-ng service on your machine. The script automatically checks if
+apt-cacher is available on your host and uses it if possible.
+
 The script will sometimes ask you, whether or not you want to run ./configure
 for each of components (libmypaint, babl, gegl, GIMP). When you are building
 for the first time, you have to answer "y" each time. For other times, you can
 answer "n" to speed up building, or you may want to answer "y" if you think
-that building environment and/or component sources changed condiderably for
+that building environment and/or component sources changed considerably for
 some reason.
+
+The script does "git pull" by itself, so if you want to build last version of
+GIMP and all its dependencies, you just need to run this script again.
 
 ## Running GIMP
 
