@@ -5,7 +5,9 @@ gimp-builder readme
 
 This set of scripts is intended to ease building of GIMP from git master with
 all it necessary dependencies on any Linux, without getting your system
-littered with lots of development packages.
+littered with lots of development packages. The set of scripts is mainly
+intended for GIMP enthusiasts, testers and other people who want to run the
+very last version of GIMP.
 
 The scripts work by using docker to contain all build dependencies.
 However, sources and built files for some dependencies (libmypaint, babl, gegl)
