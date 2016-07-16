@@ -13,6 +13,7 @@ xhost +local:
 docker run --rm -it \
   -v $BUILD_DIR:/build \
   -v /tmp/.X11-unix:/tmp/.X11-unix \
-  -v /home/portnov:/data \
+  -v $GIMP_DATA_DIR:/data \
+  -v $GIMP_CFG_DIR:/root/.config/GIMP/2.9 \
   -e DISPLAY=unix$DISPLAY \
   gimp-builder /build/bin/gimp-2.9

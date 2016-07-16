@@ -5,17 +5,50 @@ set -e
 cd $(dirname $0)
 
 echo Please enter paths for GIMP dependency sources.
+echo These may be something like ~/src/libmypaint, ~/src/babl, ~/src/gegl, ~/src/gimp.
 echo If these directories exist, it is supposed that they contain clones of corresponding official repositories that you created earlier.
 echo If these directories do not exist, then clones will be created for you.
 echo .
 
-read -p "Path for libmypaint source: " LIBMYPAINT_SRC
-read -p "Path for babl source: " BABL_SRC
-read -p "Path for gegl source: " GEGL_SRC
-read -p "Path for GIMP source: " GIMP_SRC
-read -p "Path for GIMP built files: " BUILD_DIR
+read -p "Path for libmypaint source [~/src/libmypaint]: " LIBMYPAINT_SRC
+if [ x$LIBMYPAINT_SRC = x ]
+then LIBMYPAINT_SRC=~/src/libmypaint
+fi
+read -p "Path for babl source [~/src/babl]: " BABL_SRC
+if [ x$BABL_SRC = x ]
+then BABL_SRC=~/src/babl
+fi
+read -p "Path for gegl source [~/src/gegl]: " GEGL_SRC
+if [ x$GEGL_SRC = x ]
+then GEGL_SRC=~/src/gegl
+fi
+read -p "Path for GIMP source [~/src/gimp]: " GIMP_SRC
+if [ x$GIMP_SRC = x ]
+then GIMP_SRC=~/src/gimp
+fi
+
+echo .
+echo Please enter path where you want to store GIMP binary files.
+while [ x$BUILD_DIR = x ]
+do read -p "Path for GIMP built files: " BUILD_DIR
+done
+
+echo .
+echo Please enter path to directory where you want to store your GIMP configuration.
+read -p "Path to store your GIMP configuration files [~/.config/GIMP/2.9]: " GIMP_CFG_DIR
+if [ x$GIMP_CFG_DIR = x ]
+then GIMP_CFG_DIR=~/.config/GIMP/2.9
+fi
+echo Please enter path to directory with your files which you want to be accessible to GIMP.
+echo It will be not possible to open files from other directories with GIMP.
+read -p "Path to your image files [$HOME]: " GIMP_DATA_DIR
+if [ x$GIMP_DATA_DIR = x ]
+then GIMP_DATA_DIR=$HOME
+fi
 
 mkdir -p $BUILD_DIR
+mkdir -p $GIMP_CFG_DIR
+mkdir -p $GIMP_DATA_DIR
 
 mkdir -p ~/.config/gimp-builder
 cat <<EOT > ~/.config/gimp-builder/paths
@@ -24,6 +57,8 @@ BABL_SRC=$BABL_SRC
 GEGL_SRC=$GEGL_SRC
 GIMP_SRC=$GIMP_SRC
 BUILD_DIR=$BUILD_DIR
+GIMP_CFG_DIR=$GIMP_CFG_DIR
+GIMP_DATA_DIR=$GIMP_DATA_DIR
 EOT
 
 ./clone.sh

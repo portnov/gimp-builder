@@ -30,5 +30,6 @@ VOLUME /src/gimp
 VOLUME /src/libmypaint
 VOLUME /build
 VOLUME /data
+VOLUME /root/.config/GIMP/2.9
 
 ADD build-in-container.sh /
