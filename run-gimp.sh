@@ -16,4 +16,5 @@ docker run --rm -it \
   -v $GIMP_DATA_DIR:/data \
   -v $GIMP_CFG_DIR:/root/.config/GIMP/2.9 \
   -e DISPLAY=unix$DISPLAY \
+  -e LANG=$LANG \
   gimp-builder /build/bin/gimp-2.9

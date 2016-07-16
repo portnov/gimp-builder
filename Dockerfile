@@ -20,7 +20,13 @@ RUN apt-get update && \
       python-gtk2-dev python-cairo-dev libharfbuzz-dev \
       libfreetype6-dev zlib1g-dev liblzma-dev libpng-dev \
       libpoppler-dev libpoppler-glib-dev poppler-data libjasper-dev \
-      librsvg2-dev libgs-dev
+      librsvg2-dev libgs-dev locales
+
+ARG LOCALE
+
+RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && \
+    echo $LOCALE >> /etc/locale.gen && \
+    locale-gen
 
 RUN mkdir -p /src/babl && mkdir -p /src/gegl && mkdir -p /src/gimp && mkdir -p /src/libmypaint && mkdir /build && mkdir /data
 

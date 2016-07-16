@@ -16,6 +16,9 @@ inside the container. This allows us to reuse already built files and thus,
 speed up build process when you are building them for the second (third etc)
 time.
 
+Note: GIMP built & installed by this set of scripts will not interfer with any
+existing GIMP installation.
+
 # Dependencies
 
 To run this set of scripts, you will need:

@@ -46,6 +46,11 @@ if [ x$GIMP_DATA_DIR = x ]
 then GIMP_DATA_DIR=$HOME
 fi
 
+echo .
+echo Please specify your locale string. It should be smth like "ru_RU.UTF-8 UTF-8".
+echo See /etc/locale.gen for examples of available locales.
+read -p "Locale string: " LOCALE
+
 mkdir -p $BUILD_DIR
 mkdir -p $GIMP_CFG_DIR
 mkdir -p $GIMP_DATA_DIR
@@ -59,6 +64,7 @@ GIMP_SRC=$GIMP_SRC
 BUILD_DIR=$BUILD_DIR
 GIMP_CFG_DIR=$GIMP_CFG_DIR
 GIMP_DATA_DIR=$GIMP_DATA_DIR
+LOCALE=$LOCALE
 EOT
 
 ./clone.sh
