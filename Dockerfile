@@ -1,11 +1,16 @@
 FROM debian:stretch
 MAINTAINER Ilya Portnov <portnov@iportnov.ru>
 
+ARG APTPROXY
+
 # Use apt-cacher-ng proxy if it is enabled on docker host
-RUN export HOST=$(ip route | awk '/default/ {print $3}') && \
-    if timeout 1 bash -c "cat < /dev/null > /dev/tcp/$HOST/3142"; \
-    then echo "Acquire::http { Proxy \"http://$HOST:3142\"; };" >> /etc/apt/apt.conf.d/01proxy; \
-         echo Using APT proxy at $HOST; \
+RUN if [ x$APTPROXY = x ]; \
+    then export PROXYHOST=$(ip route | awk '/default/ {print $3}');
+    else export PROXYHOST=$APTPROXY; \
+    fi && \
+    if timeout 1 bash -c "cat < /dev/null > /dev/tcp/$PROXYHOST/3142"; \
+    then echo "Acquire::http { Proxy \"http://$PROXYHOST:3142\"; };" >> /etc/apt/apt.conf.d/01proxy; \
+         echo Using APT proxy at $PROXYHOST; \
     else echo APT proxy is not available, skipping; \
     fi
 
