@@ -41,7 +41,7 @@ if [ -d $GIMP_SRC ]
 then echo GIMP source directory already exists, assuming you cloned this repo earlier.
 else echo GIMP source directory does not exist yet, creating clone for you...
      mkdir -p $GIMP_SRC
-     git clone git://git.gnome.org/gimp
+     git clone git://git.gnome.org/gimp $GIMP_SRC
 fi
 
 echo done cloning dependencies.
