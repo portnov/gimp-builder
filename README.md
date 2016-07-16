@@ -44,6 +44,11 @@ assumed that you already cloned corresponding repositories earlier:
 If these directories do not exist, the script will clone these repositories
 into that directories for you.
 
+Also the script will ask you for directory where to save GIMP configuration
+(~/.config/GIMP/2.9 by default), and a directory with files which you want to
+be available for GIMP (your home directory by default). The last directory will
+be seen as /data in GIMP open/save dialogs.
+
 These directories will be saved into ~/.config/gimp-builder/paths file for
 later usage.
 
