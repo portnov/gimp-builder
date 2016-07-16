@@ -1,9 +1,15 @@
 FROM debian:stretch
 MAINTAINER Ilya Portnov <portnov@iportnov.ru>
 
+# Use apt-cacher-ng proxy if it is enabled on docker host
 RUN export HOST=$(ip route | awk '/default/ {print $3}') && \
-    echo "Acquire::http { Proxy \"http://$HOST:3142\"; };" >> /etc/apt/apt.conf.d/01proxy
+    if timeout 1 bash -c "cat < /dev/null > /dev/tcp/$HOST/3142"; \
+    then echo "Acquire::http { Proxy \"http://$HOST:3142\"; };" >> /etc/apt/apt.conf.d/01proxy; \
+         echo Using APT proxy at $HOST; \
+    else echo APT proxy is not available, skipping; \
+    fi
 
+# Install GIMP build dependencies
 RUN apt-get update && \
     apt-get install -y build-essential git \
       sgml-base libjson-c-dev libtool autoconf \
@@ -25,4 +31,4 @@ VOLUME /src/libmypaint
 VOLUME /build
 VOLUME /data
 
-ADD build.sh /
+ADD build-in-container.sh /

@@ -1,8 +1,12 @@
 #!/bin/bash
 
-set -x
+cd $(dirname $0)
 
-BUILD_DIR=/home/portnov/soft/gimp
+if [ -f ~/.config/gimp-builder/paths ]
+then . ~/.config/gimp-builder/paths
+else ./configure
+     . ~/.config/gimp-builder/paths
+fi
 
 xhost +local:
 

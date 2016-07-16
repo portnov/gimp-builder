@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $0)
+
+echo Please enter paths for GIMP dependency sources.
+echo If these directories exist, it is supposed that they contain clones of corresponding official repositories that you created earlier.
+echo If these directories do not exist, then clones will be created for you.
+echo .
+
+read -p "Path for libmypaint source: " LIBMYPAINT_SRC
+read -p "Path for babl source: " BABL_SRC
+read -p "Path for gegl source: " GEGL_SRC
+read -p "Path for GIMP source: " GIMP_SRC
+read -p "Path for GIMP built files: " BUILD_DIR
+
+mkdir -p $BUILD_DIR
+
+mkdir -p ~/.config/gimp-builder
+cat <<EOT > ~/.config/gimp-builder/paths
+LIBMYPAINT_SRC=$LIBMYPAINT_SRC
+BABL_SRC=$BABL_SRC
+GEGL_SRC=$GEGL_SRC
+GIMP_SRC=$GIMP_SRC
+BUILD_DIR=$BUILD_DIR
+EOT
+
+./clone.sh
+
