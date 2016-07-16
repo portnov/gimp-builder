@@ -22,6 +22,8 @@ RUN apt-get update && \
       libpoppler-dev libpoppler-glib-dev poppler-data libjasper-dev \
       librsvg2-dev libgs-dev locales
 
+RUN apt-get install -y gtk2-engines-pixbuf
+
 ARG LOCALE
 
 RUN echo en_US.UTF-8 UTF-8 > /etc/locale.gen && \
