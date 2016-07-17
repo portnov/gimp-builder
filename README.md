@@ -31,6 +31,17 @@ That's all.
 
 # Usage
 
+## Downloading scripts
+
+There are options available, use whatever is more convinient for you:
+
+* You can download [ZIP file](https://github.com/portnov/gimp-builder/archive/master.zip)
+  and unzip it;
+* Or you can clone this repository by running
+    
+    git clone https://github.com/portnov/gimp-builder.git
+
+
 ## Initializing your environment
 
 First, you have to run
